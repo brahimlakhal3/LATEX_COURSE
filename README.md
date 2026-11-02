@@ -300,39 +300,7 @@ Saut de page :
 
 ---
 
-## 3. Vérifier la police du code
-
-```bash
-./test-font.sh
-```
-
-Le script compile `test-font.tex` et vérifie que **JetBrains Mono Bold** est
-bien utilisée. Sortie attendue :
-
-```text
-OK : JetBrains Mono Bold est bien utilisée pour le code.
-```
-
-Le test génère **`test-font.pdf`** pour contrôle visuel.
-
----
-
-## 4. Voir la démonstration
-
-Le fichier `chapitres/demo.tex` contient tous les exemples : encadrés,
-code, tableaux, mathématiques, liens.
-
-Dans `main.tex`, décommentez :
-
-```latex
-\input{chapitres/demo}
-```
-
-Compilez, puis remettez le `%` pour le masquer.
-
----
-
-## 5. Erreurs fréquentes
+## 3. Erreurs fréquentes
 
 | Message | Solution |
 |---|---|
@@ -347,7 +315,7 @@ Compilez, puis remettez le `%` pour le masquer.
 
 ---
 
-## 6. Structure du projet
+## 4. Structure du projet
 
 ```text
 LATEX_COURSE/
@@ -355,14 +323,11 @@ LATEX_COURSE/
 ├── config.tex                ← configuration simple du cours
 ├── preamble.tex              ← moteur de style (ne pas modifier)
 ├── compile.sh                ← compilation LuaLaTeX
-├── test-font.tex             ← document de test de la police
-├── test-font.sh              ← vérification automatique de la police
 ├── README.md
 ├── chapitres/
 │   ├── ch1.tex               ← chapitre 1
 │   ├── ch2.tex               ← chapitre 2
-│   ├── modele-chapitre.tex   ← modèle pour un nouveau chapitre
-│   └── demo.tex              ← démonstration complète
+│   └── modele-chapitre.tex   ← modèle pour un nouveau chapitre
 ├── fonts/                    ← JetBrains Mono + licence OFL
 └── images/                   ← vos images
 ```

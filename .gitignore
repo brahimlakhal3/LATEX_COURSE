@@ -8,6 +8,5 @@
 *.lot
 *.synctex.gz
 
-# PDF générés localement (non versionnés)
+# PDF généré localement (non versionné)
 main.pdf
-test-font.pdf
