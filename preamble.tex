@@ -110,11 +110,14 @@
   \thispagestyle{plain}%
   \begin{tikzpicture}[remember picture,overlay]
     \fill[deepblue] (current page.north west) rectangle
-      ([yshift=-2.1cm]current page.north east);
-    \node[anchor=west,text=white,font=\sffamily\bfseries\fontsize{38}{42}\selectfont]
-      at ([xshift=2cm,yshift=-0.95cm]current page.north west) {Chapitre #1};
-    \node[anchor=west,text=teal!25,font=\sffamily\bfseries\fontsize{14}{17}\selectfont]
-      at ([xshift=2cm,yshift=-1.65cm]current page.north west) {\coursBandeauChapitre};
+      ([yshift=-2.7cm]current page.north east);
+    \fill[teal] ([yshift=-2.62cm]current page.north west) rectangle
+      ([yshift=-2.7cm]current page.north east);
+    \node[anchor=west,text=white,font=\sffamily\bfseries\fontsize{30}{34}\selectfont]
+      at ([xshift=2cm,yshift=-1.15cm]current page.north west) {Chapitre #1};
+    \node[anchor=west,text=teal!50,font=\sffamily\bfseries\fontsize{10}{12}\selectfont]
+      at ([xshift=2cm,yshift=-2.05cm]current page.north west)
+      {\addfontfeatures{LetterSpace=12}\coursBandeauChapitre};
   \end{tikzpicture}%
   \par\vspace*{0.7cm}
   {\sffamily\bfseries\color{deepblue}\fontsize{22}{26}\selectfont #2\par}
