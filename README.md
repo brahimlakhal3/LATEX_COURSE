@@ -15,7 +15,7 @@ Dépôt : **https://github.com/brahimlakhal3/LATEX_COURSE**
 ## Démarrage en 3 étapes
 
 1. Personnalisez **`config.tex`** (titre, auteur, édition).
-2. Remplissez **`chapitres/ch1.tex`** et **`chapitres/ch2.tex`**.
+2. Remplissez **`chapitres/chapter1.tex`** et **`chapitres/chapter2.tex`**.
 3. Compilez :
 
 ```bash
@@ -83,10 +83,10 @@ Cette valeur s'applique aux blocs de code **et** au code inline.
 Copiez le modèle :
 
 ```bash
-cp chapitres/modele-chapitre.tex chapitres/ch3.tex
+cp chapitres/modele-chapitre.tex chapitres/chapter3.tex
 ```
 
-Modifiez la première ligne de `ch3.tex` :
+Modifiez la première ligne de `chapter3.tex` :
 
 ```latex
 \chapitre{3}{Titre du chapitre 3}
@@ -95,9 +95,9 @@ Modifiez la première ligne de `ch3.tex` :
 Puis ajoutez le chapitre dans **`main.tex`** :
 
 ```latex
-\input{chapitres/ch1}
-\input{chapitres/ch2}
-\input{chapitres/ch3}
+\input{chapitres/chapter1}
+\input{chapitres/chapter2}
+\input{chapitres/chapter3}
 ```
 
 Compilez deux fois (`./compile.sh`).
@@ -109,7 +109,7 @@ Compilez deux fois (`./compile.sh`).
 Pour masquer un chapitre, commentez son `\input` avec `%` :
 
 ```latex
-% \input{chapitres/ch2}
+% \input{chapitres/chapter2}
 ```
 
 ### 2.2 Titres
@@ -325,8 +325,8 @@ LATEX_COURSE/
 ├── compile.sh                ← compilation LuaLaTeX
 ├── README.md
 ├── chapitres/
-│   ├── ch1.tex               ← chapitre 1
-│   ├── ch2.tex               ← chapitre 2
+│   ├── chapter1.tex          ← chapitre 1
+│   ├── chapter2.tex          ← chapitre 2
 │   └── modele-chapitre.tex   ← modèle pour un nouveau chapitre
 ├── fonts/                    ← JetBrains Mono + licence OFL
 └── images/                   ← vos images
