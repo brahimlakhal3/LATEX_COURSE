@@ -1,0 +1,142 @@
+% ============================================================
+%  CHAPITRE DE DÉMONSTRATION
+%
+%  Ce fichier n'est pas inclus par défaut.
+%  Pour l'afficher : décommentez \input{chapitres/demo} dans main.tex.
+%  Il montre tous les éléments disponibles dans le template.
+% ============================================================
+
+\chapitre{3}{Démonstration : toutes les fonctionnalités}
+
+\begin{objectifs}
+\begin{itemize}
+  \item Voir un exemple de chaque élément disponible.
+  \item Savoir quel environnement utiliser pour chaque besoin.
+\end{itemize}
+\end{objectifs}
+
+\soussection{3.1}{Texte, listes et mise en forme}
+
+Un paragraphe normal s'écrit directement. On peut mettre un mot en
+\textbf{gras}, un autre en \textit{italique}, ou afficher du
+\code{code inline}. Le terme \motcle{important} est coloré.
+
+\begin{itemize}
+  \item Premier point.
+  \item Deuxième point avec une liste imbriquée :
+  \begin{enumerate}
+    \item Sous-point un.
+    \item Sous-point deux.
+  \end{enumerate}
+\end{itemize}
+
+\begin{definition}
+Une \textbf{définition} présente un concept nouveau de manière rigoureuse
+et précise.
+\end{definition}
+
+\begin{retenir}
+Ce bloc sert à résumer ce qu'il faut absolument retenir.
+\end{retenir}
+
+\begin{attention}
+Ce bloc signale un point dangereux ou une erreur à ne pas commettre.
+\end{attention}
+
+\begin{piege}
+Ce bloc décrit un piège classique et la manière de l'éviter.
+\end{piege}
+
+\begin{conseil}
+Ce bloc donne une bonne pratique ou une astuce.
+\end{conseil}
+
+\begin{choix}
+Ce bloc justifie un choix technique recommandé.
+\end{choix}
+
+\begin{atelier}
+Ce bloc propose une activité pratique ou un exercice guidé.
+\end{atelier}
+
+\soussection{3.2}{Blocs de code}
+
+Voici un exemple Java :
+
+\begin{lstlisting}[style=java,caption={Exemple de contrôleur Java}]
+@RestController
+@RequestMapping("/api/articles")
+public class ArticleController {
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Article> findById(@PathVariable Long id) {
+        return ResponseEntity.ok(service.findById(id));
+    }
+}
+\end{lstlisting}
+
+Un exemple Python :
+
+\begin{lstlisting}[style=python,caption={Exemple Python}]
+def salutation(nom: str) -> str:
+    return f"Bonjour, {nom} !"
+
+print(salutation("Alice"))
+\end{lstlisting}
+
+Un exemple JSON :
+
+\begin{lstlisting}[style=json,caption={Exemple de réponse JSON}]
+{
+  "id": 42,
+  "titre": "Mon article",
+  "publie": true
+}
+\end{lstlisting}
+
+Une commande shell :
+
+\begin{lstlisting}[style=bash,caption={Commandes de compilation}]
+lualatex main.tex
+lualatex main.tex
+\end{lstlisting}
+
+Un fichier de configuration :
+
+\begin{lstlisting}[style=properties,caption={Fichier de configuration}]
+serveur.port=8080
+serveur.hote=localhost
+mode.debug=true
+\end{lstlisting}
+
+\soussection{3.3}{Tableaux et mathématiques}
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabularx}{\textwidth}{lX}
+\toprule
+\textbf{Élément} & \textbf{Description} \\
+\midrule
+\code{lstlisting} & Affiche un bloc de code. \\
+\code{tcolorbox} & Affiche un encadré coloré. \\
+\code{tabularx} & Affiche un tableau qui s'adapte à la largeur. \\
+\bottomrule
+\end{tabularx}
+\caption{Exemple de tableau avec booktabs et tabularx}
+\end{table}
+
+Une formule mathématique :
+
+\begin{equation*}
+  f(x) = \sum_{i=1}^{n} x_i^2
+\end{equation*}
+
+Un lien : \href{https://example.com}{https://example.com}.
+
+\soussection{3.4}{Conclusion}
+
+\begin{resume}
+Ce chapitre de démonstration montre tous les éléments de base du
+template. Il n'est pas destiné à être conservé dans le cours final.
+\end{resume}

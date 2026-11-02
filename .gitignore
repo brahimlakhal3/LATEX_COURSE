@@ -1,0 +1,13 @@
+# Fichiers générés par LaTeX
+*.aux
+*.log
+*.out
+*.toc
+*.listing
+*.lof
+*.lot
+*.synctex.gz
+
+# PDF généré (décommentez si vous ne voulez pas versionner les PDF)
+# main.pdf
+# test-font.pdf

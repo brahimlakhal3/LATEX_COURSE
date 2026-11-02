@@ -1,0 +1,317 @@
+% ============================================================
+%  preamble.tex — Moteur de style du cours
+%
+%  Ne modifiez pas ce fichier pour personnaliser votre cours :
+%  utilisez config.tex.
+%
+%  Compilation : lualatex main.tex (2 passes)
+% ============================================================
+
+% ------------------------------------------------------------
+% Mise en page et polices
+% ------------------------------------------------------------
+\usepackage[a4paper,margin=2cm,headheight=19pt]{geometry}
+\usepackage{fontspec}
+\setmainfont{Liberation Sans}
+\setsansfont{Liberation Sans}
+\setmonofont{JetBrains Mono}[
+  Path=fonts/,
+  UprightFont=JetBrainsMono-Regular.ttf,
+  BoldFont=JetBrainsMono-Bold.ttf,
+  ItalicFont=JetBrainsMono-Italic.ttf,
+  BoldItalicFont=JetBrainsMono-BoldItalic.ttf,
+  Scale=0.95
+]
+
+\usepackage[french]{babel}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric,calc,fit,backgrounds}
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{listings,skins,breakable}
+\usepackage{listings}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{caption}
+\usepackage{hyperref}
+
+% ------------------------------------------------------------
+% Couleurs
+% ------------------------------------------------------------
+\definecolor{deepblue}{HTML}{0F2A4A}
+\definecolor{teal}{HTML}{0F766E}
+\definecolor{warm}{HTML}{C2410C}
+\definecolor{codebg}{HTML}{F6F8FA}
+\definecolor{codegray}{HTML}{6B7280}
+\definecolor{softblue}{HTML}{EAF2F8}
+\definecolor{softgray}{HTML}{F4F6F8}
+\definecolor{softteal}{HTML}{E6F4F1}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=deepblue,
+  urlcolor=teal,
+  citecolor=teal,
+  pdftitle={\coursTitre\ — \coursSousTitre},
+  pdfauthor={\coursAuteur},
+  pdfsubject={\coursSousTitre},
+  pdfkeywords={cours, support de cours, formation}
+}
+
+% ------------------------------------------------------------
+% Typographie générale
+% ------------------------------------------------------------
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.45em}
+\setlength{\emergencystretch}{2em}
+\raggedbottom
+\renewcommand{\arraystretch}{1.2}
+\setlist[itemize]{leftmargin=1.4em,itemsep=2pt,topsep=3pt}
+\setlist[enumerate]{leftmargin=1.7em,itemsep=2pt,topsep=3pt}
+
+\captionsetup{font={small,sf},labelfont={bf,color=deepblue}}
+\renewcommand{\lstlistingname}{Extrait de code}
+\renewcommand{\lstlistlistingname}{Liste des extraits de code}
+
+% ------------------------------------------------------------
+% En-têtes et pieds de page
+% ------------------------------------------------------------
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\sffamily\footnotesize\color{codegray}\coursEntete}
+\fancyhead[R]{\sffamily\footnotesize\color{codegray}\leftmark}
+\fancyfoot[C]{\sffamily\footnotesize\color{codegray}\thepage\ / \pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{teal!30}\leaders\hrule height \headrulewidth\hfill}}
+
+% ------------------------------------------------------------
+% Chapitres et sections personnalisés
+% ------------------------------------------------------------
+\newcounter{chapter}
+\renewcommand{\thechapter}{\arabic{chapter}}
+
+% \chapitre{numéro}{Titre}
+% Le numéro est affiché. Il doit suivre l'ordre des chapitres.
+\newcommand{\chapitre}[2]{%
+  \clearpage
+  \setcounter{chapter}{#1}%
+  \phantomsection
+  \pdfbookmark[1]{Chapitre #1\ — #2}{chap:#1}%
+  \addcontentsline{toc}{section}{\protect\textbf{Chapitre #1\ — #2}}%
+  \markboth{Chapitre #1\ — #2}{}%
+  \thispagestyle{plain}%
+  \begin{tikzpicture}[remember picture,overlay]
+    \fill[deepblue] (current page.north west) rectangle
+      ([yshift=-2.1cm]current page.north east);
+    \node[anchor=west,text=white,font=\sffamily\bfseries\fontsize{38}{42}\selectfont]
+      at ([xshift=2cm,yshift=-0.95cm]current page.north west) {Chapitre #1};
+    \node[anchor=west,text=teal!25,font=\sffamily\bfseries\fontsize{14}{17}\selectfont]
+      at ([xshift=2cm,yshift=-1.65cm]current page.north west) {\coursBandeauChapitre};
+  \end{tikzpicture}%
+  \par\vspace*{0.7cm}
+  {\sffamily\bfseries\color{deepblue}\fontsize{22}{26}\selectfont #2\par}
+  \vspace{0.25cm}
+  {\color{teal}\rule{\linewidth}{1.2pt}}
+  \vspace{0.65cm}
+}
+
+% \soussection{numéro}{Titre}
+\newcommand{\soussection}[2]{%
+  \phantomsection
+  \pdfbookmark[2]{#1 — #2}{sec:#1}%
+  \addcontentsline{toc}{subsection}{\protect\numberline{#1}#2}%
+  \markright{#1 — #2}%
+  {\sffamily\bfseries\color{teal}\large #1\quad #2\par}
+  \vspace{0.25cm}
+}
+
+% \soussoussection{numéro}{Titre}
+\newcommand{\soussoussection}[2]{%
+  \phantomsection
+  \pdfbookmark[3]{#1 — #2}{subsec:#1}%
+  \addcontentsline{toc}{subsubsection}{\protect\numberline{#1}#2}%
+  {\sffamily\bfseries\color{deepblue}\normalsize #1\quad #2\par}
+  \vspace{0.15cm}
+}
+
+% ------------------------------------------------------------
+% Encadrés graphiques
+% Tous s'utilisent de la même façon :
+%   \begin{nom}{} ... \end{nom}
+% ------------------------------------------------------------
+\newtcolorbox{objectifs}[1][]{
+  enhanced,breakable,
+  title={\sffamily\bfseries Objectifs du chapitre},
+  colback=deepblue!2,colframe=deepblue!35,
+  colbacktitle=deepblue!8,coltitle=deepblue,
+  fonttitle=\small,boxrule=0.5pt,arc=1.5mm,
+  left=8pt,right=8pt,top=7pt,bottom=7pt,#1
+}
+
+\newtcolorbox{definition}[1][]{
+  enhanced,breakable,
+  title={\sffamily\bfseries Définition},
+  colback=white,colframe=deepblue!30,
+  colbacktitle=deepblue!6,coltitle=deepblue,
+  fonttitle=\small,boxrule=0.5pt,arc=1.5mm,
+  left=8pt,right=8pt,top=7pt,bottom=7pt,#1
+}
+
+\newtcolorbox{retenir}[1][]{
+  enhanced,breakable,
+  title={\sffamily\bfseries À retenir},
+  colback=white,colframe=teal!45,
+  colbacktitle=teal!8,coltitle=teal!80!black,
+  fonttitle=\small,boxrule=0.5pt,arc=1.5mm,
+  left=8pt,right=8pt,top=7pt,bottom=7pt,#1
+}
+
+\newtcolorbox{attention}[1][]{
+  enhanced,breakable,
+  title={\sffamily\bfseries Attention},
+  colback=red!3,colframe=red!45!black,
+  colbacktitle=red!8,coltitle=red!60!black,
+  fonttitle=\small,boxrule=0.5pt,arc=1.5mm,
+  left=8pt,right=8pt,top=7pt,bottom=7pt,#1
+}
+
+\newtcolorbox{piege}[1][]{
+  enhanced,breakable,
+  title={\sffamily\bfseries Piège classique},
+  colback=warm!3,colframe=warm!45,
+  colbacktitle=warm!9,coltitle=warm!80!black,
+  fonttitle=\small,boxrule=0.5pt,arc=1.5mm,
+  left=8pt,right=8pt,top=7pt,bottom=7pt,#1
+}
+
+\newtcolorbox{conseil}[1][]{
+  enhanced,breakable,
+  title={\sffamily\bfseries Conseil},
+  colback=teal!3,colframe=teal!45,
+  colbacktitle=teal!10,coltitle=teal!80!black,
+  fonttitle=\small,boxrule=0.5pt,arc=1.5mm,
+  left=8pt,right=8pt,top=7pt,bottom=7pt,#1
+}
+
+\newtcolorbox{choix}[1][]{
+  enhanced,breakable,
+  title={\sffamily\bfseries Choix recommandé},
+  colback=softblue,colframe=deepblue!40,
+  colbacktitle=deepblue!8,coltitle=deepblue,
+  fonttitle=\small,boxrule=0.5pt,arc=1.5mm,
+  left=8pt,right=8pt,top=7pt,bottom=7pt,#1
+}
+
+\newtcolorbox{atelier}[1][]{
+  enhanced,breakable,
+  title={\sffamily\bfseries Atelier},
+  colback=softgray,colframe=codegray!45,
+  colbacktitle=codegray!12,coltitle=black!75,
+  fonttitle=\small,boxrule=0.5pt,arc=1.5mm,
+  left=8pt,right=8pt,top=7pt,bottom=7pt,#1
+}
+
+\newtcolorbox{resume}[1][]{
+  enhanced,breakable,
+  title={\sffamily\bfseries En résumé},
+  colback=softteal,colframe=teal!25,
+  colbacktitle=teal!8,coltitle=teal!80!black,
+  fonttitle=\small,boxrule=0.4pt,arc=1.2mm,
+  left=8pt,right=8pt,top=6pt,bottom=6pt,#1
+}
+
+% ------------------------------------------------------------
+% Langages et styles de code
+% ------------------------------------------------------------
+\lstdefinelanguage{Java25}{
+  language=Java,
+  morekeywords={
+    record, sealed, permits, non-sealed, yield, var, when
+  },
+  morekeywords=[2]{
+    @SpringBootApplication, @RestController, @Controller, @Service, @Repository,
+    @Component, @Configuration, @Bean, @Autowired, @Value, @ConfigurationProperties,
+    @GetMapping, @PostMapping, @PutMapping, @DeleteMapping, @PatchMapping,
+    @RequestBody, @PathVariable, @RequestParam, @ResponseStatus,
+    @RestControllerAdvice, @ControllerAdvice, @ExceptionHandler,
+    @CrossOrigin, @PostConstruct, @PreDestroy, @Valid, @NotNull, @NotBlank,
+    @Size, @Min, @Max, @Tag, @Operation, @ApiResponse, @Parameter, @Schema
+  }
+}
+
+\lstdefinelanguage{GradleGroovy}{
+  keywords={
+    plugins, id, version, repositories, mavenCentral, dependencies,
+    implementation, testImplementation, runtimeOnly, compileOnly,
+    java, toolchain, languageVersion, JavaLanguageVersion,
+    group, sourceCompatibility, tasks, withType, named, test
+  }
+}
+
+\lstdefinelanguage{PropertiesLang}{
+  keywords={},
+  sensitive=false
+}
+
+% Style commun à tous les blocs de code
+\lstdefinestyle{coursbase}{
+  backgroundcolor=\color{codebg},
+  basicstyle=\ttfamily\bfseries\coursCodeSize,
+  keywordstyle=\color{deepblue}\bfseries,
+  keywordstyle=[2]\color{teal}\bfseries,
+  commentstyle=\color{teal!70!black}\itshape,
+  stringstyle=\color{warm!80!black},
+  numbers=none,
+  frame=single,rulecolor=\color{deepblue!20},
+  breaklines=true,breakatwhitespace=false,
+  postbreak=\mbox{\textcolor{teal}{$\hookrightarrow$}\space},
+  showstringspaces=false,tabsize=2,columns=fullflexible,
+  keepspaces=true,upquote=true,
+  captionpos=b,xleftmargin=0.5em,framexleftmargin=0.3em,
+  lineskip=-0.6pt,
+  aboveskip=4pt,belowskip=4pt
+}
+
+\lstdefinestyle{java}{style=coursbase,language=Java25}
+\lstdefinestyle{gradle}{style=coursbase,language=GradleGroovy}
+\lstdefinestyle{properties}{style=coursbase,language=PropertiesLang}
+\lstdefinestyle{bash}{style=coursbase,language=bash}
+\lstdefinestyle{json}{style=coursbase}
+\lstdefinestyle{sql}{style=coursbase,language=SQL}
+\lstdefinestyle{python}{style=coursbase,language=Python}
+\lstdefinestyle{html}{style=coursbase,language=HTML}
+\lstdefinestyle{xml}{style=coursbase,language=XML}
+\lstdefinestyle{c}{style=coursbase,language=C}
+\lstdefinestyle{cpp}{style=coursbase,language=C++}
+\lstdefinestyle{text}{style=coursbase}
+
+% ------------------------------------------------------------
+% Raccourcis de mise en forme
+% ------------------------------------------------------------
+% Code court dans le texte : \code{nom_de_variable}
+\DeclareRobustCommand{\code}[1]{%
+  \texorpdfstring{\colorbox{codebg}{\texttt{\coursCodeSize\bfseries\color{deepblue!90}\detokenize{#1}}}}{\detokenize{#1}}%
+}
+
+% Terme important : \motcle{concept}
+\newcommand{\motcle}[1]{\textsf{\color{teal!80!black}#1}}
+
+% Alias de compatibilité avec l'ancien template
+\newcommand{\spring}[1]{\motcle{#1}}
+
+% ------------------------------------------------------------
+% Table des matières : largeur des numéros
+% ------------------------------------------------------------
+\makeatletter
+\renewcommand*\l@section{\@dottedtocline{1}{0.5em}{2.8em}}
+\renewcommand*\l@subsection{\@dottedtocline{2}{2.0em}{3.4em}}
+\renewcommand*\l@subsubsection{\@dottedtocline{3}{4.2em}{4.2em}}
+\makeatother
